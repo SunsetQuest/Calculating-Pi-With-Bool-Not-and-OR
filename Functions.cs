@@ -163,7 +163,7 @@ namespace AllMathFromSimpleProgramming
         public static bool Add( bool a7, bool a6, bool a5, bool a4, bool a3, bool a2, bool a1, bool a0, bool b07, bool b06, bool b05, bool b04, bool b03, bool b02, bool b01, bool b00, out bool r7, out bool r6, out bool r5, out bool r4, out bool r3, out bool r2, out bool r1, out bool r0)
         {
             bool carry = Add(a3, a2, a1, a0, b03, b02, b01, b00, out r3, out r2, out r1, out r0, F);
-            return Add(a7, a6, a5, a4, b07, b06, b05, b04, out r7, out r6, out r5, out r4, false); // return carry
+            return Add(a7, a6, a5, a4, b07, b06, b05, b04, out r7, out r6, out r5, out r4, carry); // return carry
         }
 
         public static bool Add(bool a7, bool a6, bool a5, bool a4, bool a3, bool a2, bool a1, bool a0, bool b07, bool b06, bool b05, bool b04, bool b03, bool b02, bool b01, bool b00, out bool r7, out bool r6, out bool r5, out bool r4, out bool r3, out bool r2, out bool r1, out bool r0, bool carryIn)
@@ -177,7 +177,6 @@ namespace AllMathFromSimpleProgramming
             bool carry = Add(a.b03, a.b02, a.b01, a.b00, b.b03, b.b02, b.b01, b.b00, out r.b03, out r.b02, out r.b01, out r.b00, F);
             return Add(a.b07, a.b06, a.b05, a.b04, b.b07, b.b06, b.b05, b.b04, out r.b07, out r.b06, out r.b05, out r.b04, carry); // return carry
         }
-
 
         public static bool Add(UINT_8 a, UINT_8 b, out UINT_8 r, bool carryIn)
         {
@@ -208,7 +207,6 @@ namespace AllMathFromSimpleProgramming
             r.SetByte1(r1);
             return carry; // return carry
         }
-
 
         public static bool Add(UINT_32 a, UINT_32 b, out UINT_32 r)
         {
@@ -447,17 +445,17 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
+        // generated with the following...
+        //for (int i = 1; i < 32; i++) { Console.Write(@"
+        //public static UINT_32 ShiftLeftBy" + i.ToString("00") + @"(UINT_32 i, out bool overflow, bool carryIn = F)
+        //{
+        //    overflow = (i.b31"); for (int j = 30; j >= (32 - i); j--) Console.Write(" || i.b" + j.ToString("00")); Console.Write(@" );
+        //    return new UINT_32("); for (int j = 31 - i; j >= 0; j--) Console.Write("i.b" + j.ToString("00") + ", "); for (int j = 0; j < i - 1; j++) Console.Write("carryIn,"); Console.Write(@"carryIn);
+        //}
+        //"); }
+
         public static UINT_32 ShiftLeftBy01(UINT_32 i, out bool overflow)
         {
-            // generated with the following...
-            //for (int i = 1; i < 32; i++) { Console.Write(@"
-            //public static UINT_32 ShiftLeftBy" + i.ToString("00") + @"(UINT_32 i, out bool overflow, bool carryIn = F)
-            //{
-            //    overflow = (i.b31"); for (int j = 30; j >= (32 - i); j--) Console.Write(" || i.b" + j.ToString("00")); Console.Write(@" );
-            //    return new UINT_32("); for (int j = 31 - i; j >= 0; j--) Console.Write("i.b" + j.ToString("00") + ", "); for (int j = 0; j < i - 1; j++) Console.Write("carryIn,"); Console.Write(@"carryIn);
-            //}
-            //"); }
-
             overflow = (i.b31);
             return new UINT_32(i.b30, i.b29, i.b28, i.b27, i.b26, i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F);
         }
@@ -492,13 +490,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b27, i.b26, i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy05(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27);
             return new UINT_32(i.b26, i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy06(UINT_32 i, out bool overflow)
         {
@@ -506,13 +502,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy07(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25);
             return new UINT_32(i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy08(UINT_32 i, out bool overflow)
         {
@@ -520,13 +514,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy09(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23);
             return new UINT_32(i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy10(UINT_32 i, out bool overflow)
         {
@@ -534,13 +526,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy11(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21);
             return new UINT_32(i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy12(UINT_32 i, out bool overflow)
         {
@@ -548,13 +538,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy13(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19);
             return new UINT_32(i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy14(UINT_32 i, out bool overflow)
         {
@@ -562,13 +550,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy15(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17);
             return new UINT_32(i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy16(UINT_32 i, out bool overflow)
         {
@@ -576,13 +562,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy17(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15);
             return new UINT_32(i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy18(UINT_32 i, out bool overflow)
         {
@@ -590,13 +574,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy19(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13);
             return new UINT_32(i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy20(UINT_32 i, out bool overflow)
         {
@@ -604,13 +586,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy21(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11);
             return new UINT_32(i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy22(UINT_32 i, out bool overflow)
         {
@@ -618,13 +598,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy23(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09);
             return new UINT_32(i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy24(UINT_32 i, out bool overflow)
         {
@@ -632,13 +610,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy25(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08 || i.b07);
             return new UINT_32(i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy26(UINT_32 i, out bool overflow)
         {
@@ -646,13 +622,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy27(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08 || i.b07 || i.b06 || i.b05);
             return new UINT_32(i.b04, i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy28(UINT_32 i, out bool overflow)
         {
@@ -660,13 +634,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b03, i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy29(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08 || i.b07 || i.b06 || i.b05 || i.b04 || i.b03);
             return new UINT_32(i.b02, i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy30(UINT_32 i, out bool overflow)
         {
@@ -674,13 +646,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b01, i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
 
-
         public static UINT_32 ShiftLeftBy31(UINT_32 i, out bool overflow)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08 || i.b07 || i.b06 || i.b05 || i.b04 || i.b03 || i.b02 || i.b01);
             return new UINT_32(i.b00, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F);
         }
-
 
         public static UINT_32 ShiftLeftBy03(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -688,13 +658,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b28, i.b27, i.b26, i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy04(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28);
             return new UINT_32(i.b27, i.b26, i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy05(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -702,13 +670,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b26, i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy06(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26);
             return new UINT_32(i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy07(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -716,13 +682,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy08(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24);
             return new UINT_32(i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy09(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -730,13 +694,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy10(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22);
             return new UINT_32(i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy11(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -744,13 +706,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy12(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20);
             return new UINT_32(i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy13(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -758,13 +718,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy14(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18);
             return new UINT_32(i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy15(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -772,13 +730,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy16(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16);
             return new UINT_32(i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy17(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -786,13 +742,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy18(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14);
             return new UINT_32(i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy19(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -800,13 +754,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy20(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12);
             return new UINT_32(i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy21(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -814,13 +766,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy22(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10);
             return new UINT_32(i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy23(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -828,13 +778,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy24(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08);
             return new UINT_32(i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy25(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -842,13 +790,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b06, i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy26(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08 || i.b07 || i.b06);
             return new UINT_32(i.b05, i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy27(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -856,13 +802,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b04, i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy28(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08 || i.b07 || i.b06 || i.b05 || i.b04);
             return new UINT_32(i.b03, i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy29(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -870,13 +814,11 @@ namespace AllMathFromSimpleProgramming
             return new UINT_32(i.b02, i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
 
-
         public static UINT_32 ShiftLeftBy30(UINT_32 i, out bool overflow, bool carryIn)
         {
             overflow = (i.b31 || i.b30 || i.b29 || i.b28 || i.b27 || i.b26 || i.b25 || i.b24 || i.b23 || i.b22 || i.b21 || i.b20 || i.b19 || i.b18 || i.b17 || i.b16 || i.b15 || i.b14 || i.b13 || i.b12 || i.b11 || i.b10 || i.b09 || i.b08 || i.b07 || i.b06 || i.b05 || i.b04 || i.b03 || i.b02);
             return new UINT_32(i.b01, i.b00, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn, carryIn);
         }
-
 
         public static UINT_32 ShiftLeftBy31(UINT_32 i, out bool overflow, bool carryIn)
         {
@@ -916,7 +858,6 @@ namespace AllMathFromSimpleProgramming
         {
             return new INT_32(F, i.b31, i.b30, i.b29, i.b28, i.b27, i.b26, i.b25, i.b24, i.b23, i.b22, i.b21, i.b20, i.b19, i.b18, i.b17, i.b16, i.b15, i.b14, i.b13, i.b12, i.b11, i.b10, i.b09, i.b08, i.b07, i.b06, i.b05, i.b04, i.b03, i.b02, i.b01);
         }
-
 
         public static INT_32 AND(bool a, INT_32 b)
         {
@@ -2016,7 +1957,6 @@ namespace AllMathFromSimpleProgramming
             a = Inc(a); b = Inc(Inc(b)); c = Inc(c); total = Subtract(total, Div(four, Mult(a, Mult(b, c)))); //       11111101101010011111 (low)
             a = Inc(a); b = Inc(Inc(b)); c = Inc(c); total = Add(total, Div(four, Mult(a, Mult(b, c))));      //       11111101101010100010 (high? - matches to full 32 bits) 
                                                                                             // Actual Pi: 11.0010010000111111011010101000100010000101101000110000100011010011
-
             total = ShiftRight(total);
 
             //add the front 3

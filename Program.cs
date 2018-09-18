@@ -27,7 +27,6 @@ namespace AllMathFromSimpleProgramming
             UINT_8 rUInt8 = new UINT_8();
             UINT_16 rUInt16 = new UINT_8();
             UINT_32 rUInt32 = new UINT_32();
-            //INT_8 rInt8 = new INT_8();
             INT_16 rInt16 = new INT_8();
             INT_32 rInt32 = new INT_32();
 
@@ -182,12 +181,12 @@ namespace AllMathFromSimpleProgramming
             Console.WriteLine("Mult(myInt32a24, myInt32b24) " + (Equal(rInt32,myAnswer24) ? "[PASS]" : "[FAIL]"));
 
 
-            //// 00000000000000011000000110100111(98727) * 00000000000000000111111001011001 = 10111110010101011100011010110111
-            //UINT_32 myUInt32a25 = new UINT_32(F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T, F, F, F, F, F, F, T, T, F, T, F, F, T, T, T);
-            //UINT_32 myUInt32b25 = new UINT_32(F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T, T, T, T, T, F, F, T, F, T, T, F, F, T);
-            //UINT_32 myAnswer_25 = new UINT_32(T, F, T, F, F, F, T, F, F, F, F, T, F, F, T, T, T, F, T, T, T, F, F, T, F, T, F, F, T, F, T, F);
-            //rUInt32 = Div(myUInt32a25, myUInt32b25);
-            //Console.WriteLine("Div(myUInt32a25, myUInt32b25) " + (Equal(rUInt32, myAnswer_25) ? "[PASS]" : "[FAIL]"));
+            // 00000000000000011000000110100111(98727) * 00000000000000000111111001011001(32345) = 11
+            UINT_32 myUInt32a25 = new UINT_32(F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T, F, F, F, F, F, F, T, T, F, T, F, F, T, T, T);
+            UINT_32 myUInt32b25 = new UINT_32(F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T, T, T, T, T, F, F, T, F, T, T, F, F, T);
+            UINT_32 myAnswer_25 = new UINT_32(F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T);
+            rUInt32 = Div(myUInt32a25, myUInt32b25);
+            Console.WriteLine("Div(myUInt32a25, myUInt32b25) " + (Equal(rUInt32, myAnswer_25) ? "[PASS]" : "[FAIL]"));
 
             // 00000000000000000000000000001010 / 00000000000000000000000000000010 = 00000000000000000000000000000101
             UINT_32 myUInt32a26 = new UINT_32(F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, T, F);
